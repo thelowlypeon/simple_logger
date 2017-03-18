@@ -1,3 +1,5 @@
+require 'simple_logger/configuration'
 require 'simple_logger/helpers'
 require 'simple_logger/request'
 require 'simple_logger/queue'
+require 'simple_logger/batch'
