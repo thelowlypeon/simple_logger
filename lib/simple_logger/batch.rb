@@ -6,7 +6,7 @@ module SimpleLogger
       @data = data
     end
 
-    def deliver(async=true)
+    def deliver(async: true)
       if async
         Thread.new do
           deliver!
@@ -19,6 +19,7 @@ module SimpleLogger
     private
 
     def deliver!
+      return unless SimpleLogger.config.enabled?
       Net::HTTP.post_form(SimpleLogger.config.url, @data) unless @data.empty?
     end
   end
