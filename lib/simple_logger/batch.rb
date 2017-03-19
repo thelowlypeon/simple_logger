@@ -8,8 +8,7 @@ module SimpleLogger
     end
 
     def deliver
-      return unless SimpleLogger.config.enabled?
-      if SimpleLogger.config.deliver_async?
+      if false && SimpleLogger.config.deliver_async?
         Thread.new do
           deliver!
         end
