@@ -4,7 +4,8 @@ module SimpleLogger
 
     DEFAULT_LOGGED_KEYS = [
       :method, :path, :query, :status,
-      :remote_ip, :user_agent, :language
+      :remote_ip, :user_agent, :language,
+      :referrer, :request_uri
     ]
 
     def type

@@ -62,12 +62,14 @@ end
 Out of the box, for every request, SimpleLogger will send
 
 * REST method
+* request uri
 * path
 * query (hash)
 * status
 * remote ip
 * user agent
 * language
+* referrer
 
 You can add or remove keys by defining them on the `Request` object:
 
