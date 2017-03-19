@@ -29,11 +29,6 @@ describe SimpleLogger::Configuration do
       it "is disabled" do
         expect(SimpleLogger.config.enabled?).to be false
       end
-
-      it "doesn't send any batched data" do
-        batch = SimpleLogger::Batch.new(key: 'value')
-        expect(batch.deliver).to be_nil
-      end
     end
 
     context "when default" do
