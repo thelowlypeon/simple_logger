@@ -69,7 +69,7 @@ Out of the box, for every request, SimpleLogger will send
 
 You can add or remove keys by defining them on the `Request` object:
 
-```
+```ruby
 SimpleLogger::Request.include_key(:some_other_key)
 SimpleLogger::Request.exclude_key(:language)
 ```
