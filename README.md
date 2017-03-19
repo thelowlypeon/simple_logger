@@ -55,7 +55,9 @@ end
 * `ignore` (lambda): lamba that takes a loggable and returns a boolean indicating whether it should be ignored from logs
 * `ignore_paths` (regexp): regular expression for which paths to ignore from request logs
 
-## Usage
+## Logs
+
+### Requests
 
 Out of the box, for every request, SimpleLogger will send
 
@@ -73,3 +75,15 @@ You can add or remove keys by defining them on the `Request` object:
 SimpleLogger::Request.include_key(:some_other_key)
 SimpleLogger::Request.exclude_key(:language)
 ```
+
+### Errors
+
+For all errors raised by your application (and rescued at the Rack layer), SimpleLogger sends:
+
+* error class
+* message
+* backtrace
+
+## Contributing
+
+Submit a pull request!
