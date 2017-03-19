@@ -22,37 +22,9 @@ describe SimpleLogger::Configuration do
   end
 
   context "#enabled?" do
-    context "with keys" do
-      let(:key) { 'some key' }
-      before { SimpleLogger.configure {|c| c.key = key } }
-
-      context "without a key" do
-        let(:key) { nil }
-
-        it "is not enabled" do
-          expect(SimpleLogger.config.enabled?).to be false
-        end
-
-        context "even if manually enabled" do
-          before { SimpleLogger.configure {|c| c.enabled = true } }
-
-          it "is not enabled" do
-            expect(SimpleLogger.config.enabled?).to be false
-          end
-        end
-      end
-
-      context "with a key" do
-        it "is enabled by default" do
-          expect(SimpleLogger.config.enabled?).to be true
-        end
-      end
-    end
-
-    context "when manually disabled" do
+    context "when enabled flag is set in configure" do
       let(:enabled) { false }
-      let(:key) { 'something' }
-      before { SimpleLogger.configure {|c| c.enabled = enabled; c.key = key } }
+      before { SimpleLogger.configure {|c| c.enabled = enabled } }
 
       it "is disabled" do
         expect(SimpleLogger.config.enabled?).to be false
@@ -63,5 +35,24 @@ describe SimpleLogger::Configuration do
         expect(batch.deliver(async: false)).to be_nil
       end
     end
+
+    context "when default" do
+      before { SimpleLogger.instance_variable_set(:@configuration, nil) }
+
+      it "defaults enabled to true" do
+        expect(SimpleLogger.config.enabled?).to be true
+      end
+    end
+  end
+
+  context "with http basic" do
+    let(:user) { 'username' }
+    let(:password) { 'password' }
+    before { SimpleLogger.configure {|c| c.http_auth_user = user; c.http_auth_password = password } }
+
+    it "includes the http basic credentials in the URI" do
+      expect(SimpleLogger.config.url.userinfo).to eq "#{user}:#{password}"
+    end
+    
   end
 end

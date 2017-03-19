@@ -1,6 +1,6 @@
 module SimpleLogger
   class Configuration
-    attr_writer :application, :key, :enabled, :simple_logger_url, :batch_size
+    attr_writer :http_auth_user, :http_auth_password, :enabled, :simple_logger_url, :batch_size
 
     def batch_size
       @batch_size ||= 5
@@ -13,8 +13,8 @@ module SimpleLogger
     def url
       if @url.nil?
         @url = URI.parse(simple_logger_url)
-        @url.userinfo = @application
-        @url.password = @key
+        @url.userinfo = @http_auth_user
+        @url.password = @http_auth_password
       end
       @url
     end
@@ -24,7 +24,7 @@ module SimpleLogger
     end
 
     def enabled?
-      enabled && !@key.nil?
+      enabled
     end
   end
 
