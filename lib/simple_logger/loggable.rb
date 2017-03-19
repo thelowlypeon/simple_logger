@@ -1,8 +1,10 @@
 module SimpleLogger
   class Loggable
+    attr_accessor :timestamp
+
     def initialize(data = {})
       @data = SimpleLogger::Helpers.symbolize_keys(data)
-      @timestamp = Time.now.utc
+      @timestamp = Time.now
     end
 
     def type
@@ -22,7 +24,7 @@ module SimpleLogger
     end
 
     def meta
-      { type: type, timestamp: timestamp }
+      { type: type, timestamp: timestamp.utc, unixtime: timestamp.to_f }
     end
   end
 end

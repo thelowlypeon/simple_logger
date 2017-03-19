@@ -1,4 +1,5 @@
 require 'net/http'
+require 'json'
 
 module SimpleLogger
   class Batch
@@ -20,7 +21,7 @@ module SimpleLogger
     private
 
     def serialized_data
-      { logs: @data.map{|log| log.serialize.merge(log.meta)} }
+      { logs: @data.map{|log| log.serialize.merge(log.meta)}.to_json }
     end
 
     def deliver!
