@@ -12,6 +12,13 @@ module SimpleLoggingHelpers
   end
 end
 
+module Net
+  class HTTP
+    # suppress actual requests
+    def post_form(url, options); end
+  end
+end
+
 RSpec.configure do |c|
   c.filter_run focus: true
   c.run_all_when_everything_filtered = true
