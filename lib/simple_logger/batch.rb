@@ -24,7 +24,7 @@ module SimpleLogger
     end
 
     def deliver!
-      Net::HTTP.post_form(SimpleLogger.config.url, @data) unless @data.empty?
+      Net::HTTP.post_form(SimpleLogger.config.url, serialized_data) unless @data.empty?
     rescue
       nil
     end
