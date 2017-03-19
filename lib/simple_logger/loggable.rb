@@ -9,6 +9,10 @@ module SimpleLogger
       :loggable
     end
 
+    def ignore?
+      false
+    end
+
     def value_for(key)
       @data[key]
     end

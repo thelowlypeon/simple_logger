@@ -5,7 +5,7 @@ module SimpleLogger
     end
 
     def log(entry)
-      logs << entry
+      logs << entry unless SimpleLogger.config.ignore?[entry] || entry.ignore?
 
       deliver! unless count < SimpleLogger.config.batch_size
     end

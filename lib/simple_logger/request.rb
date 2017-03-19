@@ -11,6 +11,10 @@ module SimpleLogger
       :request
     end
 
+    def ignore?
+      self.value_for(:path) =~ SimpleLogger.config.ignore_paths
+    end
+
     def serialize
       Hash[self.class.logged_keys.map {|key| [key, self.value_for(key)] }]
     end

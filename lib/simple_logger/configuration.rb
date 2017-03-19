@@ -5,7 +5,9 @@ module SimpleLogger
                 :enabled,
                 :simple_logger_url,
                 :batch_size,
-                :deliver_async
+                :deliver_async,
+                :ignore,
+                :ignore_paths
 
     def batch_size
       @batch_size ||= 5
@@ -31,6 +33,14 @@ module SimpleLogger
 
     def enabled?
       enabled
+    end
+
+    def ignore?
+      @ignore ||= lambda { |loggable| false }
+    end
+
+    def ignore_paths
+      @ignore_paths ||= /^\/(public|images|assets|css|favicon|scripts)/
     end
 
     def deliver_async?

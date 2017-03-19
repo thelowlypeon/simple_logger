@@ -38,6 +38,10 @@ require 'simple_logger'
 SimpleLogger.configure do |c|
   c.http_auth_user = 'my_http_basic_username'
   c.http_auth_password = 'my_http_basic_password'
+  c.ignore = lambda do |loggable|
+    loggable.type == :request && loggable.value_for(:status) == 301
+  end
+  c.ignore_paths = /\/(public|admin)/
 end
 ```
 
@@ -48,6 +52,8 @@ end
 * `enabled` (bool): you can manually disable SimpleLogger, such as when you're in development or test environments
 * `simple_logger_url` (string): set the destination for all your posted logs
 * `batch_size` (int): by default, SimpleLogger will queue 5 items before sending them
+* `ignore` (lambda): lamba that takes a loggable and returns a boolean indicating whether it should be ignored from logs
+* `ignore_paths` (regexp): regular expression for which paths to ignore from request logs
 
 ## Usage
 
