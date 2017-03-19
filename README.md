@@ -1,6 +1,8 @@
 # Simple Logger (for Rack applications)
 
-Asynchronously send request logs and errors to Simple Logger for your Rack app.
+Asynchronously send request logs and errors to Simple Logger for your Ruby web app.
+
+Note: This currently only supports Rack based applications.
 
 ## Installation
 
