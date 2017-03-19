@@ -58,7 +58,7 @@ describe SimpleLogger::Rack do
         let(:header_value) { 'my header value' }
         let(:header_key) { :MY_CUSTOM_HEADER }
         let(:headers) { { header_key => header_value } }
-        before { SimpleLogger::Request.log_key(header_key) }
+        before { SimpleLogger::Request.include_key(header_key) }
         after { SimpleLogger::Request.exclude_key(header_key) }
 
         it "includes the custom header in the log" do

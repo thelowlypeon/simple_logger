@@ -33,7 +33,7 @@ module SimpleLogger
         @@logged_keys ||= DEFAULT_LOGGED_KEYS
       end
 
-      def log_key(key)
+      def include_key(key)
         logged_keys << key.to_sym
       end
 

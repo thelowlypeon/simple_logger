@@ -8,7 +8,7 @@ Note: This currently only supports Rack based applications.
 
 Add the following to your Rack application's `Gemfile`:
 
-```
+```ruby
 # Gemfile
 gem 'simple_logger', git: 'https://github.com/thelowlypeon/simple_logger'
 ```
@@ -16,7 +16,7 @@ gem 'simple_logger', git: 'https://github.com/thelowlypeon/simple_logger'
 If you're running your application with a `config.ru`, simply require `simple_logger/rack`
 and `use` SimpleLogger's middleware:
 
-```
+```ruby
 # config.ru
 # ...
 require 'simple_logger/rack'
@@ -32,7 +32,7 @@ For simple Rack applications, this is probably in a `config.ru`, but it
 could be in your bootstrap file or elsewhere.
 Make sure to `require 'simple_logger'` or `'simple_logger/rack'` before you try to configre it.
 
-```
+```ruby
 require 'simple_logger'
 
 SimpleLogger.configure do |c|
@@ -70,6 +70,6 @@ Out of the box, for every request, SimpleLogger will send
 You can add or remove keys by defining them on the `Request` object:
 
 ```
-SimpleLogger::Request.log_key(:some_other_key)
+SimpleLogger::Request.include_key(:some_other_key)
 SimpleLogger::Request.exclude_key(:language)
 ```
