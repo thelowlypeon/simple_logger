@@ -24,17 +24,6 @@ use SimpleLogger::Rack::Middleware
 run MyRackApp.new
 ```
 
-Alternatively, you can require it in your Gemfile:
-
-```
-# Gemfile
-gem 'simple_logger', git: 'https://github.com/thelowlypeon/simple_logger', require: 'simple_logger/rack'
-
-# config.ru
-use SimpleLogger::Rack::Middleware
-run MyRackApp.new
-```
-
 ## Configuration
 
 Configure SimpleLogger any time before your app receives its first request.
