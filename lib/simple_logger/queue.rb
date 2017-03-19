@@ -5,24 +5,21 @@ module SimpleLogger
     end
 
     def log(entry)
-      case entry
-      when Request
-        requests << entry
-      end
+      logs << entry
 
       deliver! unless count < SimpleLogger.config.batch_size
     end
 
     def pending
-      { requests: requests }
+      logs
     end
 
     def count
-      pending.values.flatten(1).count
+      pending.count
     end
 
     def reset
-      self.requests = []
+      self.logs = []
     end
 
     def deliver!
@@ -31,7 +28,7 @@ module SimpleLogger
 
     private
 
-    attr_accessor :requests
+    attr_accessor :logs
 
     def empty_queue
       data = pending

@@ -19,6 +19,10 @@ module SimpleLogger
 
     private
 
+    def serialized_data
+      { logs: @data.map{|log| log.serialize.merge(log.meta)} }
+    end
+
     def deliver!
       Net::HTTP.post_form(SimpleLogger.config.url, @data) unless @data.empty?
     rescue

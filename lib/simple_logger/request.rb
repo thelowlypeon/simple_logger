@@ -1,5 +1,5 @@
 module SimpleLogger
-  class Request
+  class Request < Loggable
     attr_reader :data
 
     DEFAULT_LOGGED_KEYS = [
@@ -7,8 +7,8 @@ module SimpleLogger
       :remote_ip, :user_agent, :language
     ]
 
-    def initialize(data = {})
-      @data = SimpleLogger::Helpers.symbolize_keys(data)
+    def type
+      :request
     end
 
     def serialize
@@ -16,16 +16,12 @@ module SimpleLogger
     end
 
     def value_for(key)
-      value = @data[key]
+      value = super(key)
       case key
       when :query
         value = SimpleLogger::Helpers.symbolize_keys(::Rack::Utils.parse_nested_query(value)) unless value.is_a?(Hash)
       end
       value
-    end
-
-    def method_missing(attr)
-      @data[attr]
     end
 
     class << self

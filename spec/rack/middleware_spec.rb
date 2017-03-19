@@ -18,11 +18,11 @@ describe SimpleLogger::Rack do
     end
 
     it "queues the request" do
-      expect{ get_request }.to change{ middleware.queue.pending[:requests].count }
+      expect{ get_request }.to change{ middleware.queue.pending.count }
     end
 
     context "logged data" do
-      subject { middleware.queue.pending[:requests].last.serialize }
+      subject { middleware.queue.pending.last.serialize }
 
       context "with a request method" do
         it "logs get methods" do
