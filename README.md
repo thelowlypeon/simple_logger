@@ -46,3 +46,22 @@ end
 * `enabled` (bool): you can manually disable SimpleLogger, such as when you're in development or test environments
 * `simple_logger_url` (string): set the destination for all your posted logs
 * `batch_size` (int): by default, SimpleLogger will queue 5 items before sending them
+
+## Usage
+
+Out of the box, for every request, SimpleLogger will send
+
+* REST method
+* path
+* query (hash)
+* status
+* remote ip
+* user agent
+* language
+
+You can add or remove keys by defining them on the `Request` object:
+
+```
+SimpleLogger::Request.log_key(:some_other_key)
+SimpleLogger::Request.exclude_key(:language)
+```

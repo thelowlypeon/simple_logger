@@ -7,7 +7,7 @@ module SimpleLogger
     end
 
     def simple_logger_url
-      @simple_logger_url ||= 'fake'
+      @simple_logger_url ||= 'https://my.simple_logger.url'
     end
 
     def url
