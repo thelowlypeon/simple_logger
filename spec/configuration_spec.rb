@@ -22,7 +22,7 @@ describe SimpleLogger::Configuration do
   end
 
   context "#enabled?" do
-    context "when enabled flag is set in configure" do
+    context "when enabled flag is set to false in configure" do
       let(:enabled) { false }
       before { SimpleLogger.configure {|c| c.enabled = enabled } }
 
@@ -32,7 +32,7 @@ describe SimpleLogger::Configuration do
 
       it "doesn't send any batched data" do
         batch = SimpleLogger::Batch.new(key: 'value')
-        expect(batch.deliver(async: false)).to be_nil
+        expect(batch.deliver).to be_nil
       end
     end
 

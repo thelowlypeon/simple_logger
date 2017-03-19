@@ -1,6 +1,11 @@
 module SimpleLogger
   class Configuration
-    attr_writer :http_auth_user, :http_auth_password, :enabled, :simple_logger_url, :batch_size
+    attr_writer :http_auth_user,
+                :http_auth_password,
+                :enabled,
+                :simple_logger_url,
+                :batch_size,
+                :deliver_async
 
     def batch_size
       @batch_size ||= 5
@@ -20,11 +25,17 @@ module SimpleLogger
     end
 
     def enabled
-      @enabled.nil? ? (@enabled = true) : @enabled
+      @enabled = true if @enabled.nil?
+      @enabled
     end
 
     def enabled?
       enabled
+    end
+
+    def deliver_async?
+      @deliver_async = true if @deliver_async.nil?
+      @deliver_async
     end
   end
 
