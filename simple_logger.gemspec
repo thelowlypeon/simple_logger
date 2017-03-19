@@ -11,7 +11,7 @@ Gem::Specification.new 'simple_logger', SimpleLogger::VERSION do |s|
   s.files       = Dir["lib/**/*"]
   s.test_files  = Dir["spec/**/*"]
 
-  s.add_dependency 'rack', '~> 2.0'
   s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rack', '~> 2.0'
   s.add_development_dependency 'rack-test'
 end

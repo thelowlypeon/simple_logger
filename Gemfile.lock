@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     simple_logger (0.0.1)
-      rack (~> 2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -29,6 +28,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  rack (~> 2.0)
   rack-test
   rspec
   simple_logger!
